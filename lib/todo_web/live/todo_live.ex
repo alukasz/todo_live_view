@@ -18,6 +18,7 @@ defmodule TodoWeb.TodoLive do
     case Todo.create(todo_params) do
       {:ok, todo} ->
         {:noreply, assign(socket, :todos, socket.assigns.todos ++ [todo])}
+
       _ ->
         {:noreply, socket}
     end
@@ -35,18 +36,12 @@ defmodule TodoWeb.TodoLive do
 
   defp toggle_todo(todos, todo_id) do
     Enum.map(todos, fn
-      %Todo{id: ^todo_id, completed: completed} = todo ->
-        %{todo | completed: !completed}
-
-      todo ->
-        todo
+      %Todo{id: ^todo_id, completed: completed} = todo -> %{todo | completed: !completed}
+      todo -> todo
     end)
   end
 
   defp delete_todo(todos, todo_id) do
-    Enum.reject(todos, fn
-      %Todo{id: ^todo_id} = todo -> true
-      todo -> false
-    end)
+    Enum.reject(todos, &(&1.id == todo_id))
   end
 end
