@@ -22,4 +22,19 @@ defmodule TodoWeb.TodoLive do
         {:noreply, socket}
     end
   end
+
+  def handle_event("toggle_todo", %{"id" => todo_id}, socket) do
+    todos = toggle_todo(socket.assigns.todos, todo_id)
+    {:noreply, assign(socket, :todos, todos)}
+  end
+
+  defp toggle_todo(todos, todo_id) do
+    Enum.map(todos, fn
+      %Todo{id: ^todo_id, completed: completed} = todo ->
+        %{todo | completed: !completed}
+
+      todo ->
+        todo
+    end)
+  end
 end
