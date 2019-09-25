@@ -9,7 +9,7 @@ defmodule Todo.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      Todo.Repo,
+      # Todo.Repo,
       # Start the endpoint when the application starts
       TodoWeb.Endpoint
       # Starts a worker by calling: Todo.Worker.start_link(arg)
