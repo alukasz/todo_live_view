@@ -28,6 +28,11 @@ defmodule TodoWeb.TodoLive do
     {:noreply, assign(socket, :todos, todos)}
   end
 
+  def handle_event("delete_todo", %{"id" => todo_id}, socket) do
+    todos = delete_todo(socket.assigns.todos, todo_id)
+    {:noreply, assign(socket, :todos, todos)}
+  end
+
   defp toggle_todo(todos, todo_id) do
     Enum.map(todos, fn
       %Todo{id: ^todo_id, completed: completed} = todo ->
@@ -35,6 +40,13 @@ defmodule TodoWeb.TodoLive do
 
       todo ->
         todo
+    end)
+  end
+
+  defp delete_todo(todos, todo_id) do
+    Enum.reject(todos, fn
+      %Todo{id: ^todo_id} = todo -> true
+      todo -> false
     end)
   end
 end
