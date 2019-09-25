@@ -2,8 +2,8 @@ defmodule TodoWeb.TodoLive do
   use Phoenix.LiveView
 
   @todos [
-    %Todo{title: "Taste Elixir & Phoenix LiveView", completed: true},
-    %Todo{title: "Buy a unicorn", completed: false}
+    %Todo{id: "1", title: "Taste Elixir & Phoenix LiveView", completed: true},
+    %Todo{id: "2", title: "Buy a unicorn", completed: false}
   ]
 
   def render(assigns) do
@@ -14,8 +14,12 @@ defmodule TodoWeb.TodoLive do
     {:ok, assign(socket, :todos, @todos)}
   end
 
-  def handle_event("add_todo", %{"todo" => %{"title" => title}}, socket) do
-    todo = %Todo{title: title}
-    {:noreply, assign(socket, :todos, socket.assigns.todos ++ [todo])}
+  def handle_event("add_todo", %{"todo" => todo_params}, socket) do
+    case Todo.create(todo_params) do
+      {:ok, todo} ->
+        {:noreply, assign(socket, :todos, socket.assigns.todos ++ [todo])}
+      _ ->
+        {:noreply, socket}
+    end
   end
 end
