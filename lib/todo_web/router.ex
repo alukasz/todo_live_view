@@ -18,6 +18,7 @@ defmodule TodoWeb.Router do
     pipe_through :browser
 
     live "/", TodoLive, as: :todo
+    live "/:status", TodoLive, as: :todo
   end
 
   # Other scopes may use custom stacks.

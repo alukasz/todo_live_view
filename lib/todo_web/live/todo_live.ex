@@ -11,7 +11,15 @@ defmodule TodoWeb.TodoLive do
   end
 
   def mount(_, socket) do
-    {:ok, assign(socket, :todos, @todos)}
+    {:ok, assign(socket, todos: @todos, filter: "all")}
+  end
+
+  def handle_params(%{"status" => status}, _uri, socket) when status in ["active", "completed"] do
+    {:noreply, assign(socket, :filter, status)}
+  end
+
+  def handle_params(_params, _uri, socket) do
+    {:noreply, assign(socket, :filter, "all")}
   end
 
   def handle_event("add_todo", %{"todo" => todo_params}, socket) do
