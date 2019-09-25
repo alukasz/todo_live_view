@@ -15,7 +15,10 @@ config :todo, TodoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "qCzsytdWLRtViCxYtCBIAEPk32yksOdn6u0cz/AXdFxHUlKzzMOCaRJPDCEbRg1s",
   render_errors: [view: TodoWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Todo.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Todo.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "7M9T6cCtXyLYJ8P5ja+HbB8xFLEZyyNg"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
