@@ -8,6 +8,7 @@ defmodule TodoWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Phoenix.LiveView.Flash
+    plug TodoWeb.UserTokenPlug
   end
 
   pipeline :api do
@@ -17,8 +18,8 @@ defmodule TodoWeb.Router do
   scope "/", TodoWeb do
     pipe_through :browser
 
-    live "/", TodoLive, as: :todo
-    live "/:status", TodoLive, as: :todo
+    live "/", TodoLive, as: :todo, session: [:todo_token]
+    live "/:status", TodoLive, as: :todo, session: [:todo_token]
   end
 
   # Other scopes may use custom stacks.

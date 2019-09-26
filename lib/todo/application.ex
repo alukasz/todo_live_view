@@ -11,9 +11,9 @@ defmodule Todo.Application do
       # Start the Ecto repository
       # Todo.Repo,
       # Start the endpoint when the application starts
-      TodoWeb.Endpoint
-      # Starts a worker by calling: Todo.Worker.start_link(arg)
-      # {Todo.Worker, arg},
+      TodoWeb.Endpoint,
+      Todo.TodoSupervisor,
+      {Registry, keys: :unique, name: Todo.TodoRegistry}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
