@@ -3,7 +3,7 @@ defmodule TodoWeb.UserTokenPlug do
 
   def init(opts), do: opts
 
-  def call(conn, opts) do
+  def call(conn, _opts) do
     conn =
       case get_session(conn, :todo_token) do
         nil -> put_session(conn, :todo_token, Ecto.UUID.generate())

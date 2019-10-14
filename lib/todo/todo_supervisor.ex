@@ -6,7 +6,7 @@ defmodule Todo.TodoSupervisor do
   end
 
   def start_child(id) do
-    DynamicSupervisor.start_child(__MODULE__, {Todo.TodoStorage, id})
+    DynamicSupervisor.start_child(__MODULE__, {Todo.TodoServer, id})
   end
 
   def init(_) do
