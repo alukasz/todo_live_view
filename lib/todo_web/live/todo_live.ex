@@ -13,4 +13,13 @@ defmodule TodoWeb.TodoLive do
   def mount(_, socket) do
     {:ok, assign(socket, :todos, @todos)}
   end
+
+  def handle_event("add_todo", %{"todo" => todo_params}, socket) do
+    case Todo.create(todo_params) do
+      {:ok, todo} ->
+        {:noreply, assign(socket, :todos, socket.assigns.todos ++ [todo])}
+      error ->
+        {:noreply, socket}
+    end
+  end
 end
