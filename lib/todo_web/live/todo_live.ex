@@ -8,7 +8,7 @@ defmodule TodoWeb.TodoLive do
   end
 
   def mount(%{todo_token: todos_id}, socket) do
-    TodoServer.start_link(todos_id)
+    Todo.TodoSupervisor.start_child(todos_id)
     todos = TodoServer.get(todos_id)
     {:ok, assign(socket, todos: todos, filter: "all", todos_id: todos_id)}
   end

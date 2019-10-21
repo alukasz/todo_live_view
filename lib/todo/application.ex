@@ -12,6 +12,7 @@ defmodule Todo.Application do
       TodoWeb.Endpoint,
       # Starts a worker by calling: Todo.Worker.start_link(arg)
       # {Todo.Worker, arg},
+      Todo.TodoSupervisor,
       {Registry, keys: :unique, name: Todo.TodoRegistry}
     ]
 
