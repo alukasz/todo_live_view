@@ -12,7 +12,10 @@
       <%= for todo <- @todos do %>
         <li <%= if todo.completed, do: "class=completed" %>>
           <div class="view">
-            <input class="toggle" type="checkbox">
+            <input class="toggle" type="checkbox"
+                   phx-click="toggle_todo"
+                   phx-value-id="<%= todo.id %>"
+                   <%= if todo.completed, do: "checked" %>>
             <label><%= todo.title %></label>
           </div>
         </li>
