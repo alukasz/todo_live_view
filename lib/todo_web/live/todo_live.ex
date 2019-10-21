@@ -10,8 +10,8 @@ defmodule TodoWeb.TodoLive do
     TodoWeb.TodoView.render("index.html", assigns)
   end
 
-  def mount(_, socket) do
-    {:ok, assign(socket, todos: @todos, filter: "all")}
+  def mount(%{todo_token: todos_id}, socket) do
+    {:ok, assign(socket, todos: @todos, filter: "all", todos_id: todos_id)}
   end
 
   def handle_params(%{"filter" => filter}, _uri, socket) when filter in ["active", "completed"] do
