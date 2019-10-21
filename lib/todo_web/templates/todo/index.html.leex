@@ -9,7 +9,14 @@
     <input id="toggle-all" class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <!-- insert todos here -->
+      <%= for todo <- @todos do %>
+        <li <%= if todo.completed, do: "class=completed" %>>
+          <div class="view">
+            <input class="toggle" type="checkbox">
+            <label><%= todo.title %></label>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </section>
   <footer class="footer">
