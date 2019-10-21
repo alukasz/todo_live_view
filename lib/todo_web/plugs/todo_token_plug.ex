@@ -1,4 +1,4 @@
-defmodule TodoWeb.UserTokenPlug do
+defmodule TodoWeb.TodoTokenPlug do
   import Plug.Conn
 
   def init(opts), do: opts

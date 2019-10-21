@@ -8,7 +8,7 @@ defmodule TodoWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Phoenix.LiveView.Flash
-    plug TodoWeb.UserTokenPlug
+    plug TodoWeb.TodoTokenPlug
   end
 
   pipeline :api do

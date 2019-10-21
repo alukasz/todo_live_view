@@ -56,8 +56,11 @@ defmodule Todo.TodoServer do
 
   defp toggle_todo(todos, todo_id) do
     Enum.map(todos, fn
-      %Todo{id: ^todo_id, completed: completed} = todo -> %{todo | completed: !completed}
-      todo -> todo
+      %Todo{id: ^todo_id, completed: completed} = todo ->
+        %{todo | completed: !completed}
+
+      todo ->
+        todo
     end)
   end
 
