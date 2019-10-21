@@ -9,7 +9,7 @@
     <input id="toggle-all" class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <%= for todo <- @todos do %>
+      <%= for todo <- filter_todos(@todos, @filter) do %>
         <li <%= if todo.completed, do: "class=completed" %>>
           <div class="view">
             <input class="toggle" type="checkbox"
@@ -24,7 +24,11 @@
   </section>
   <footer class="footer">
     <ul class="filters">
-      <!-- insert filters here -->
+      <%= for filter <- ["all", "active", "completed"] do %>
+        <li>
+          <%= filter_link(@socket, filter, @filter) %>
+        </li>
+      <% end %>
     </ul>
   </footer>
 </section>
