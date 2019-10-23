@@ -1,9 +1,18 @@
-# Todo
+# Phoenix LiveView tutorial
+
+Application built for Phoenix LiveView tutorial. It is yet another TodoMVC clone. Featuring todos, routing (live nagivation) and OTP-based storage for todos.
+
+### Branches
+
+- `part-one` starting point for first article - Phoenix LiveView (very soon!)
+- `part-two` starting point for second article - introduction to OTP (soon!)
+- `finished` finished application
+
+## Setup
 
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
